@@ -12,7 +12,7 @@ void setup()
     str += memory[i] + ".";
   }
   String[] memory2 = split(str, '.');
-  String[] activeMote = loadStrings("10k.txt");
+  String[] activeMote = loadStrings("z.txt");
   str = "";
   for (int i = 0; i < activeMote.length; i++)
   {
@@ -29,29 +29,25 @@ void setup()
   outputx = createWriter("mem.txt");
   outputx2 = createWriter("activeMote.txt");
   outputx3 = createWriter("activeProperty.txt");
-  outputx.println(memory2[5]);
-  outputx.flush();
   String workingMemory = "";
   for (int mem = 0; mem < memory2.length; mem++) {
-    String[] activeMemory2 = memory2[mem].split(".");
-    for (int y = 0; y < activeMemory2.length; y++) {
-      for (int x = 0; x < activeMote2.length; x++) {
-        for (int z = 0; z < activeProperty2.length; z++) {
-          if (activeMemory2[y].indexOf(activeMote2[x]) > -1 && activeMemory2[y].indexOf(activeProperty2[z]) > -1) {
-            String am = activeMote2[x];
-            String ap = activeProperty2[z];
-            workingMemory += "&" + mem + "&" + am + "&" + ap + "\n";
-            outputz = createWriter("test.txt");
-            outputz.println(workingMemory);
-            outputz.flush();
-            outputz.close();
-            outputx.println(mem);
-            outputx.flush();
-            outputx2.println(activeMote2[x]);
-            outputx2.flush();
-            outputx3.println(activeProperty2[z]);
-            outputx3.flush();
-          }
+    String activeMemory2 = memory2[mem];
+    for (int x = 0; x < activeMote2.length; x++) {
+      for (int z = 0; z < activeProperty2.length; z++) {
+        if (activeMemory2.indexOf(activeMote2[x]) > -1 && activeMemory2.indexOf(activeProperty2[z]) > -1) {
+          String am = activeMote2[x];
+          String ap = activeProperty2[z];
+          workingMemory += "&" + mem + "&" + am + "&" + ap + "\n";
+          outputz = createWriter("test.txt");
+          outputz.println(workingMemory);
+          outputz.flush();
+          outputz.close();
+          outputx.println(mem);
+          outputx.flush();
+          outputx2.println(activeMote2[x]);
+          outputx2.flush();
+          outputx3.println(activeProperty2[z]);
+          outputx3.flush();
         }
       }
     }
